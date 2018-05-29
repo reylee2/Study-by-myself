@@ -1,0 +1,45 @@
+pageinspect 查看BTREE索引结构
+
+1. 添加pageinspect拓展
+    create extension pageinspect;
+    
+2. 创建测试表，并创建一个多列组合索引
+    select count(1) from tb_bloom_c;
+    +----------+
+    |  count   |
+    +----------+
+    | 10000000 |
+    +----------+
+    (1 row)
+    
+    postgres@[local]:5432 test# \d+ tb_bloom_c
+                       Table "public.tb_bloom_c"
+    +--------+---------+-----------+---------+--------------+-------------+
+    | Column |  Type   | Modifiers | Storage | Stats target | Description |
+    +--------+---------+-----------+---------+--------------+-------------+
+    | i1     | integer |           | plain   |              |             |
+    | i2     | integer |           | plain   |              |             |
+    | i3     | integer |           | plain   |              |             |
+    | i4     | integer |           | plain   |              |             |
+    | i5     | integer |           | plain   |              |             |
+    | i6     | integer |           | plain   |              |             |
+    | i7     | integer |           | plain   |              |             |
+    | i8     | integer |           | plain   |              |             |
+    | i9     | integer |           | plain   |              |             |
+    | i10    | integer |           | plain   |              |             |
+    +--------+---------+-----------+---------+--------------+-------------+
+    Indexes:
+        "btreeidx_i38" btree (i3, i8)
+        
+    postgres@[local]:5432 test# \di+ btreeidx_i38
+                               List of relations
+    +--------+--------------+-------+----------+------------+--------+-------------+
+    | Schema |     Name     | Type  |  Owner   |   Table    |  Size  | Description |
+    +--------+--------------+-------+----------+------------+--------+-------------+
+    | public | btreeidx_i38 | index | postgres | tb_bloom_c | 214 MB |             |
+    +--------+--------------+-------+----------+------------+--------+-------------+
+    (1 row)
+    
+3. BTREE索引结构
+    BTREE索引结构包含四部分，meta page、root page、branch page和leaf page
+    
