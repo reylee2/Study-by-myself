@@ -1,0 +1,13 @@
+# 八皇后问题
+def queens(num,n=0):
+    if n==len(num):
+        print(num)
+        return
+    for i in range(len(num)):
+        num[n],flag=i,True
+        for j in range(n):
+            if i==num[j] or abs(num[j]-i)==n-j:
+                flag=False
+                break
+        if flag==True:
+            queens(num,n+1)
