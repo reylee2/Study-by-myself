@@ -1,0 +1,25 @@
+# 双端队列
+
+import collections
+
+data=collections.deque(range(10))
+print(data)
+data.append(15)
+print(data)
+data.appendleft(88)
+print(data)
+
+data.pop()
+print(data)
+data.popleft()
+print(data)
+
+data.rotate(1)
+print(data)
+data.rotate(-2)
+print(data)
+
+data.extend([11,55,33])
+print(data)
+data.extendleft([88,99,77])         #  反序列化插入队列
+print(data)
