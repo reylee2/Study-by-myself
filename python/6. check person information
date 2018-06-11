@@ -1,0 +1,12 @@
+database={'Jack':{'phone':'0351','addr':'Taiyuan'},'Tom':{'phone':'010','addr':'Beijing'},'Jerry':{'phone':'0352','addr':'Datong'}}
+forma={'phone':'Phone number','addr':'Address'}
+
+name = input('Please enter user name you want to check: ')
+request = input('Phone number(p) or Address(a): ')
+
+if request=='p':key='phone'
+else:key='addr'
+
+if name in database:print("%s's %s is %s" % (name,forma[key],database[name][key]))
+
+input("Please press <enter> to continue..")
