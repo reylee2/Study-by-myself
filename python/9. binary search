@@ -1,0 +1,25 @@
+def search(seq,num,lower=0,higher=None):
+    'binary search'
+    if higher is None:
+        higher=len(seq)-1
+    if higher==lower:
+        print('Lower is',lower,'\n Higher is',higher,'\n Target number is',num)
+        assert num==seq[higher],'not found in this sequence...'
+        return higher
+    else:
+        middle=(higher+lower)//2
+        if num>seq[middle]:
+            print('Lower is',lower,'\n Higher is',higher,'\n Target number is',num)
+            lower=middle+1
+            return search(seq,num,lower,higher)
+        else:
+            print('Lower is',lower,'\n Higher is',higher,'\n Target number is',num)
+            higher=middle
+            return search(seq,num,lower,higher)
+
+s=[1,2,3,5,2,0,8,36,99,53,5,56,88,77,66,33,55]
+fina=sorted(s)
+print(fina)
+num=int(input('Input the number you want find: '))
+position=search(fina,num)
+print(fina[position])
