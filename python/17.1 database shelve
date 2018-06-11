@@ -1,0 +1,48 @@
+# A simple database via shelve
+
+import shelve
+
+def store_person(db):
+    pid=input('Enter the unique ID number: ')
+    person={}
+    person['name']=input("Enter this person's name: ")
+    person['age']=input("Enter the age of person: ")
+    person['phone']=input("Enter the phone number: ")
+    db[pid]=person
+
+def lookup_person(db):
+    pid=input('Enter ID number: ')
+    field=input("What would you want to know? (name,age,phone) ")
+    field=field.strip().lower()
+    try:
+        print(field.capitalize()+': ',db[pid][field])
+    except KeyError as e:
+        print(e,' \nError: The information of the ID number does not exist!')
+
+def print_help():
+    print('The available commands are: ')
+    print('Store  : Stores information about a person into database')
+    print('Lookup : Lookup the information of a person')
+    print('Quit   : Save changes and exit')
+    print('?      : Prints this message')
+
+def enter_command():
+    cmd=input('Enter your command (? for help): ')
+    cmd=cmd.strip().lower()
+    return cmd
+
+def main():
+    db=shelve.open('database')
+    try:
+        while True:
+            cmd=enter_command()
+            if cmd=='?': print_help()
+            elif cmd=='store': store_person(db)
+            elif cmd=='lookup': lookup_person(db)
+            elif cmd=='quit': break
+            else: print('Enter a wrong command!')
+    finally:
+        db.close()
+
+if __name__=='__main__':main()
+
