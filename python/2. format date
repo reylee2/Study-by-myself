@@ -1,0 +1,9 @@
+monthlist=['January','February','March','April','May','June','July','August','September','October','November','December']
+dayend=['st','nd','rd']+17*['th']\
+	    +['st','nd','rd']+7*['th']\
+	    +['st']
+year=int(input('Year: '))
+month=int(input('Month(1-12): '))
+day=int(input('Day: '))
+print(monthlist[month-1]+'  '+str(day)+dayend[day-1]+'  '+str(year))
+input('Please press <Enter> to continue...')
