@@ -1,0 +1,29 @@
+import random,fileinput
+
+lst=list(fileinput.input(files='D:\Personal Something\Something\Study\Python Study\code\\16. destiny.txt'))
+print('The list of the destiny is %s' % lst)
+while True:
+    print("Your today's destiny is %s" % random.choice(lst))
+    count=0
+    while True:
+        con=input('Do you want try again ? <Y/N>')
+        if con != 'Y' and con != 'N':
+            count+=1
+            if count==3:break
+        else:break
+    if con!='Y':break
+    
+    
+
+“”“
+附destiny.txt
+
+Lovely
+Perfect
+Lucky
+Not Bad
+It's OK
+Just so so
+Terrible
+Bad
+”“”
