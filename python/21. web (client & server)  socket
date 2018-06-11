@@ -1,0 +1,49 @@
+#####   服务端
+# implement the network script in server side via socket module
+import  socket,time
+
+s=socket.socket()
+
+host=socket.gethostname()
+port=3333
+
+s.bind((host,port))
+s.listen(10)                    # allow 11 clients connect this server
+
+while True:
+    c,addr=s.accept()
+    print('Got connection from ',addr)
+    time.sleep(10)
+    c.send(b'Thanks for connection')
+    c.close()
+    
+    
+    
+    
+    
+    
+#####  客户端
+# implement the network script in client side via socket module
+import socket,time
+
+s=socket.socket()
+
+host=socket.gethostname()
+port=3333
+
+s.connect((host,port))
+print(s.recv(1024))
+time.sleep(5)
+
+
+
+#####   测试并发
+# using multi clients to connect the server
+import os
+for i in range(10):
+    os.startfile(r'D:/Personal Something/Something/Study/Python Study/code/21. socket_client.py')
+
+"""
+From the phenomenon, 10 clients execute as a sequence. 
+When a client connected the server, other client must wait for it.
+"""
