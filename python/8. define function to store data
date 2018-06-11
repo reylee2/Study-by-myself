@@ -1,0 +1,25 @@
+def initdict(name):
+    'initialize the data structure'
+    name['first']={}
+    name['middle']={}
+    name['last']={}
+
+def store(stru_name,full_name):
+    'storage the data into structure'
+    person=full_name.split()
+    if len(person)==2:person.insert(1,'')
+    laber=list(stru_name.keys())
+    for lab,name in zip(laber,person):
+        #if not checkup(stru_name,lab,name):
+            stru_name[lab].setdefault(name,[]).append(full_name)
+
+def checkup(stru_name,label,name):
+    'check if the data exists'
+    return stru_name[label].get(name)
+
+mydb={}
+initdict(mydb)
+store(mydb,'Rey Lee')
+print(checkup(mydb,'last','Lee'))
+print(mydb)
+input('Please press <Enter> to continue..')
