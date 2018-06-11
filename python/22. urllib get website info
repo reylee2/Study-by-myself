@@ -1,0 +1,14 @@
+# implement download web content from remote web side
+
+import urllib.request as request
+
+webpage= request.urlopen('https://pan.baidu.com/s/1VWWCjndgqruMjBaYeVJNNQ')
+f=open('22. web_info.txt','w')
+text=webpage.readline()
+while text:
+    f.writelines(str(text))
+    text = webpage.readline()
+
+webpage.close()
+f.close()
+request.urlcleanup()
