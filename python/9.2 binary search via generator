@@ -1,0 +1,28 @@
+def search(seq,num):
+    def tyield(seq,num):
+        lower=0
+        upper=len(seq)-1
+        while upper>lower:
+            middle=(upper+lower)//2
+            yield middle
+            if seq[middle]<num:
+                lower=middle+1
+            else:upper=middle
+        if upper==lower:return upper
+
+    i=0
+    for ty in tyield(seq,num):
+        i+=1
+        print('第 %s 次：%s' % (i,ty))
+        if num==seq[ty]:
+            print("Found it! index=%s; number=%s" % (ty,seq[ty]))
+            return ty
+        else: print("Cannot found it!")
+        
+s=[1,2,3,5,2,0,8,36,99,53,5,56,88,77,66,33,55]
+fina=sorted(s)
+print(fina)
+num=int(input('Input the number you want find: '))
+position=search(fina,num)
+print(position)
+print(fina[position])
