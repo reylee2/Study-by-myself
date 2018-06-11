@@ -1,0 +1,8 @@
+import bisect
+
+s=[1,2,3,5,2,0,8,36,99,53,5,56,88,77,66,33,55]
+fina=sorted(s)
+print(fina)
+num=int(input('Input the number you want find: '))
+position=bisect.bisect_left(fina,num)
+print(position,fina[position])
