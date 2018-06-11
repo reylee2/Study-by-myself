@@ -1,0 +1,28 @@
+# re 正则表达式
+
+import re,fileinput
+
+## get the information of the email sender
+pat=re.compile('From:(.*)<(.*?)>$')             # 贪婪模式
+pat=re.compile('From:(.*?)<(.*?)>')             # 非贪婪模式
+for line in fileinput.input(files='D:\\Personal Something\\Something\\Study\\Python Study\\code\\18. mail_info.txt'):
+    m=re.match(pat,line)
+    if m:
+        print(m.group(0))
+        print(m.group(1))
+        print(m.group(2))
+fileinput.close()
+
+print('-------------------------***********--------------------------')
+## get all email information from the file
+pat = re.compile('[a-z\_\.\-\#\+]+@[a-z\.\-0-9]+',re.IGNORECASE)
+email=set()
+for line in fileinput.input(files='D:\\Personal Something\\Something\\Study\\Python Study\\code\\18. mail_info.txt'):
+    if line!='\n':                                      # 只取出邮件头信息中的邮箱
+        for address in pat.findall(line):
+            email.add(address)
+    else: fileinput.close()
+
+email=sorted(email)
+for address in email:
+    print(address)
