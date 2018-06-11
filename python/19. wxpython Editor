@@ -1,0 +1,51 @@
+# Using wxPython to implement GUI
+
+import wx
+
+## Version 1
+"""
+app=wx.App()
+win=wx.Frame(None,title='Simple Editor~',size=(400,360))
+loadbtn=wx.Button(win,label='Open',pos=(215,5),size=(80,25))
+savebtn=wx.Button(win,label='Save',pos=(300,5),size=(80,25))
+filename=wx.TextCtrl(win,pos=(5,5),size=(200,25))
+content=wx.TextCtrl(win,pos=(5,40),size=(375,280),style=wx.TE_MULTILINE|wx.HSCROLL)
+win.Show()
+app.MainLoop()"""
+
+## Version 2
+app1= wx.App()
+win1= wx.Frame(None,title='Editor',size=(400,360))
+bkg1=wx.Panel(win1)
+
+openbtn1=wx.Button(bkg1,label='Open')
+savebtn1=wx.Button(bkg1,label='Save')
+
+    ## 事件处理 event  <事件处理函数的参数为event>
+def load(event):
+    file=open(filename1.GetValue())
+    content1.SetValue(file.read())
+    file.close()
+def save(event):
+    file=open(filename1.GetValue(),mode='w')
+    file.write(content1.GetValue())
+    file.close()
+openbtn1.Bind(wx.EVT_BUTTON,load)
+savebtn1.Bind(wx.EVT_BUTTON,save)
+
+filename1=wx.TextCtrl(bkg1)
+content1=wx.TextCtrl(bkg1,style=wx.TE_MULTILINE|wx.HSCROLL)
+
+hbox1 = wx.BoxSizer()                                       # 使用尺寸器
+hbox1.Add(filename1,proportion=2,flag=wx.EXPAND)
+hbox1.Add(openbtn1,flag=wx.LEFT,border=5)
+hbox1.Add(savebtn1,flag=wx.LEFT,border=5)
+
+vbox1 = wx.BoxSizer(wx.VERTICAL)
+vbox1.Add(hbox1,flag=wx.EXPAND|wx.ALL,border=5)
+vbox1.Add(content1,proportion=1,flag=wx.EXPAND|wx.LEFT|wx.BOTTOM|wx.RIGHT,border=5)
+
+bkg1.SetSizer(vbox1)
+
+win1.Show()
+app1.MainLoop()
