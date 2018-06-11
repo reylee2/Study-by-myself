@@ -1,0 +1,8 @@
+# fileinput
+
+import fileinput
+
+for  line in fileinput.input(files='C:\\Users\\jdli\\Desktop\\tpm.sql'):            #  添加inplace=True时将输出写回文件
+    line = line.rstrip()
+    num = fileinput.lineno()
+    print(num,line)
