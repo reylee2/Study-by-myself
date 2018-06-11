@@ -1,0 +1,19 @@
+# DB API -- Oracle
+
+import cx_Oracle
+
+db=cx_Oracle.connect('fmuser_ljd/fm@10.86.0.7:1521/fmorcl')
+cur=db.cursor()
+cur.execute("select id,info from test_1 where rownum<100")
+
+f=open(file=r'C:\Users\jdli\Desktop\aa.txt',mode='w')
+
+info=cur.fetchone()
+try:
+    while info:
+        f.writelines(str(info)+'\n')
+        info = cur.fetchone()
+finally: f.close()
+
+cur.close()
+db.close()
