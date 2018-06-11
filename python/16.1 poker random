@@ -1,0 +1,21 @@
+# press <Enter> to get a card of a poker
+import random,pprint,collections
+
+# design a poker
+value=list(range(1,11))+'Jack Queen King'.split()
+suit='diamonds hearts clubs spades'.split()
+deck=['%s of %s' % (v,s) for v in value for s in suit]
+pprint.pprint(deck)
+
+# make the deck shuffle
+random.shuffle(deck)
+pprint.pprint(deck)
+
+# get a card from deck
+print('----------------------------------------------******----------------------------------------------')
+dec=collections.deque(['%s of %s' % (v,s) for v in value for s in suit])
+pprint.pprint(dec)
+random.shuffle(dec)
+pprint.pprint(dec)
+while dec:
+    input(dec.popleft())
