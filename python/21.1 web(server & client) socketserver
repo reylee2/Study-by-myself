@@ -1,0 +1,58 @@
+#######   服务端
+# implement fork
+import socketserver
+
+class Server(socketserver.ForkingMixIn,socketserver.TCPServer):pass
+
+class Handler(socketserver.StreamRequestHandler):
+    def handle(self):
+        addr=self.request.getpeername()
+        print('Got connection from ',addr)
+        self.wfile.write('Thanks for connection')
+
+server=Server(('',3333),Handler)
+server.serve_forever()
+
+"""windows does not support fork!!!"""
+
+
+# implement multi threads
+import socketserver,time
+
+class Server(socketserver.ThreadingMixIn,socketserver.TCPServer):pass
+
+class Handler(socketserver.StreamRequestHandler):
+    def handle(self):
+        addr=self.request.getpeername()
+        print('Got connection from ',addr)
+        time.sleep(10)
+        self.wfile.write(b'Thanks for connection')
+
+server=Server(('',3333),Handler)
+server.serve_forever()
+
+
+
+
+
+#######   客户端
+# implement the network script in client side via socket module
+import socket,time
+
+s=socket.socket()
+
+host=socket.gethostname()
+port=3333
+
+s.connect((host,port))
+print(s.recv(1024))
+time.sleep(5)
+
+
+
+
+#######   测试并发
+# using multi clients to connect the server
+import os
+for i in range(10):
+    os.startfile(r'D:/Personal Something/Something/Study/Python Study/code/21.1 socket_client.py')
