@@ -1,0 +1,4 @@
+name = input("What is your name? ")
+input("Press <enter>")
+print("Hello. "+name+" !")
+input("Press <enter>")
