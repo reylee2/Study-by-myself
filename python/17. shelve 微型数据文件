@@ -1,0 +1,35 @@
+# test shelve model
+
+import shelve,time
+jack=dict(zip(['name','age'],['Jack',25]))
+tony=dict(zip(['name','age'],['Tony',20]))
+seq=[1,2,3]
+
+# write information into file
+db=shelve.open(filename='shelveFile')       # 避免下述陷阱还有一种方法，open时添加参数 “writeback=True”,即所有的数据操作都在内存中，关闭时才写入文件
+db['Jack']=jack                             # 写文件
+db['Tony']=tony
+db['x']=seq
+db['x'].append(10)                          # trap陷阱:作用字典的副本，副本从文件创建到内存
+print(db['x'])
+
+seq.append(10)                              # 对上述trap陷阱的修复
+db['x']=seq
+print(db['x'])
+db.close()
+
+# read information from file
+db=shelve.open('shelveFile')
+print(db['Jack'])
+print(db['Tony'])
+print(db['x'])
+db.close()
+
+# update information for file
+db=shelve.open('shelveFile')
+T=db['Tony']
+T['age']=35
+print(T)
+db['Tony']=T
+print(db['Tony'])
+db.close()
