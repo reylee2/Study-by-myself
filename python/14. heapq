@@ -1,0 +1,24 @@
+# 堆
+
+import heapq,random
+
+data=list(range(10))
+random.shuffle(data)
+heap=[]
+
+for n in data:
+    heapq.heappush(heap,n)
+
+print(heap)
+heapq.heappush(heap,0.5)
+print(heap)
+print(heapq.heappop(heap))
+print(heap)
+print(heapq.heapreplace(heap,-1))
+print(heap)
+print(heapq.nlargest(1,heap))
+print(heapq.nsmallest(2,heap))
+
+print(data)
+heapq.heapify(data)
+print(data)
