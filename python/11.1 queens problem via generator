@@ -1,0 +1,14 @@
+# 利用生成器处理八皇后问题
+def yieldqueen(seq,num):
+	for i in range(num):
+		flag=True
+		for j in range(len(seq)):
+			if i==seq[j] or len(seq)-j==abs(seq[j]-i):
+				flag=False
+				break
+		if flag==True:
+			if len(seq)==num-1:
+				yield (i,)
+			else:
+				for r in yieldqueen(seq+(i,),num):
+					yield (i,)+r
