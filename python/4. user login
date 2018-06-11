@@ -1,0 +1,6 @@
+user_info=[['Jerry','a123456'],['Poly','b123456'],['Jack','c123456'],['Tom','d123456']]
+user=input('Enter user name: ')
+passwd=input('Enter password: ')
+if [user,passwd] in user_info: print("Successful!")
+else: print('Log in failed!')
+input('Please press <Enter> to continue...')
