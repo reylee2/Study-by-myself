@@ -1,0 +1,18 @@
+width=int(input("Please enter the price width: "))
+
+price_width=10
+tytle_format='%-*s%*s'
+price_format='%-*s%*.2f'
+
+print('='*width)
+print(tytle_format % (width-price_width,'Item',price_width,'Price'))
+print('-'*width)
+
+print(price_format % (width-price_width,'Apple',price_width,0.4))
+print(price_format % (width-price_width,'Banana',price_width,2.5))
+print(price_format % (width-price_width,'Pair',price_width,3.0))
+print(price_format % (width-price_width,'Pinapple',price_width,5.12))
+print(price_format % (width-price_width,'Nut',price_width,10))
+print(price_format % (width-price_width,'Tomato',price_width,3.99))
+
+input("Please press <Enter> to continue...")
