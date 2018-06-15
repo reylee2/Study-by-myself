@@ -1,0 +1,24 @@
+## 最终
+import re
+import Class_handle,Class_rule,Class_parse
+
+class BasicParse(Class_parse.Parse):
+    def __init__(self,handle):
+        super(BasicParse, self).__init__(handle)
+        self.addfilter(r'\*(.+?)\*', 'emphasis')
+        self.addfilter(r'(http://[\.a-zA-Z/]+)', 'url')
+        self.addfilter(r'([\.a-zA-Z]+@[\.a-zA-Z]+[a-zA-Z]+)', 'email')
+
+        self.addrule(Class_rule.ListRule())
+        self.addrule(Class_rule.ListItemRule())
+        self.addrule(Class_rule.HeaderRule())
+        self.addrule(Class_rule.SubHeaderRule())
+        self.addrule(Class_rule.ParagraphRule())
+
+f=open(file='test_input.txt')
+fo=open(r'test_output3.html',mode='w')
+handle=Class_handle.HtmlContent()
+parse=BasicParse(handle)
+parse.parse(f,fo)
+fo.close()
+f.close()
