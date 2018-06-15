@@ -1,0 +1,28 @@
+## 将某些内容封装
+
+import re
+import block_content,Class_handle
+
+title= True
+f=open(file='test_input.txt')
+fo=open(r'test_output2.html',mode='w')
+partt=re.compile('\*(.+?)\*')
+handle=Class_handle.HtmlContent()
+
+fo.write(handle.start('title'))
+
+for i in block_content.blocks(f):
+    i=re.sub(partt,handle.sub('emphasis'),i)
+    if title:
+        fo.write(handle.start('header'))
+        fo.write(i)
+        fo.write(handle.end('header'))
+        title=False
+    else:
+        fo.write(handle.start('paragraph'))
+        fo.write(i)
+        fo.write(handle.end('paragraph'))
+
+fo.writelines(handle.end('title'))
+f.close()
+fo.close()
