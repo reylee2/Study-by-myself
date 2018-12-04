@@ -22,6 +22,8 @@
 
 - 完成上述步骤后，栈s2便为逆波兰式输出结果。但是栈s2应做一下逆序处理，因为此时表达式的首字符位于栈底；
 
+java 实现如下：
+
 ```java
 package com.reversePolish.deom;
 
