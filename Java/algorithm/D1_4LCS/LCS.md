@@ -19,3 +19,5 @@
 4. Yj=﹤y1，⋯，yj﹥即Y序列的前j个字符 (1≤j≤n)(字符串Y的j前缀)；
 5. LCS(X , Y) 为字符串X和Y的最长公共子序列，即为Z=﹤z1，⋯，zk﹥。
 - 注：不严格的表述。事实上，X和Y的可能存在多个子串，长度相同并且最大，因此，LCS(X,Y)严格的说，是个字符串集合。即：Z∈ LCS(X , Y) .
+***
+代码详解 https://github.com/reylee2/Study-by-myself/blob/master/Java/algorithm/D1_4LCS/LCS.java
